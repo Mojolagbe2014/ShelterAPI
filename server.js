@@ -1,7 +1,7 @@
 'use strict';
 
 // api general config
-import config from './config';
+var config = require('./config');
 
 // api author info
 const author = {

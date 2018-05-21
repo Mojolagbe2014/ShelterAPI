@@ -7,3 +7,4 @@ var Knex        = require('knex')(dbconfig[config.env]);
 module.exports = Knex;
 
 Knex.migrate.latest([dbconfig]); 
+Knex.seed.run([dbconfig]);

@@ -20,11 +20,11 @@ Install the following softwares on your machine:
 API Installation on a Local Machine
 -----------------------------------
 
-  * [Clone this API repository](https://github.com/Mojolagbe2014/petshelterapi.git) 
+  * [Clone this API repository](https://github.com/Mojolagbe2014/ShelterAPI.git) 
   
     This can be done via the terminal/command window with 
     ```bash
-    $ git clone https://github.com/Mojolagbe2014/petshelterapi.git
+    $ git clone https://github.com/Mojolagbe2014/ShelterAPI.git
     ```
     In order to use command `git`, [Git](https://git-scm.com/downloads) must first be installed on your machine.
     
@@ -34,9 +34,9 @@ API Installation on a Local Machine
     ```
     to install the API dependencies. [More details on this command..](https://docs.npmjs.com/cli/install) After several   installation steps, directory `node_modules` is created in the cloned directory.
   
-  * In order to change the database, server and other parameters, the configuration file `setup.json` located in the `config` folder is used for the purpose and it contains default values that can be changed.
+  * In order to change the database, server and other parameters, the configuration file `config.js`is used for this purpose and it contains default values that can be changed.
   
-  * Before starting the server, create a database with name `pets`.
+  * Before starting the server, create a database with name `pets`. **Note:** `pets` is the default value therefore it can be any chosen name.
   
   * Then, run the command `knex migrate:latest` to create the required database tables via the [knex migration](http://knexjs.org/). The migration files are store in `migrations` directory.
   
@@ -58,7 +58,7 @@ API Installation on a Local Machine
     ``` 
     to start the server.
   
-  * Once the server has started running, the API can be tested by visiting `http://localhost:[insert_the_port]/`. The default port in the `setup.json` file is `8000`, so if the port is left intact you can visit `http://localhost:8000/`
+  * Once the server has started running, the API can be tested by visiting `http://localhost:[insert_the_port]/`. The default port in the `config.js` file is `8000`, so if the port is left intact you can visit `http://localhost:8000/`
 
 Usage
 -----
@@ -67,7 +67,7 @@ Here is how you use it:
 
   * **READ:**   http://localhost:[insert_the_port]/pets/      (method => GET)    - Returns all the stored pets information.
   
-  * **READ:**   http://localhost:[insert_the_port]/pets/:id/  (method => GET)    - Returns the details of the pet with `ID = id`.
+  * **READ:**   http://localhost:[insert_the_port]/pets/id/  (method => GET)    - Returns the details of the pet with `ID = id`.
   
   * **CREATE:** http://localhost:[insert_the_port]/pets/      (method => POST)   - Creates a new pet and returns `message` and `status=0|1` where 1 = success or 0 = failure.
   

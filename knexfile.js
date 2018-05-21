@@ -16,7 +16,7 @@ module.exports = {
         }
 
     },
-    production: {
+    production2: {
         migrations: { tableName: config.migrations },
         seeds: { tableName: config.seeds },
 
@@ -29,5 +29,8 @@ module.exports = {
             charset: config.charset
         }
 
+    },
+    production: {
+        "use_env_variable": "DATABASE_URL"
     }
 };

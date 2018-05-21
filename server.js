@@ -56,6 +56,33 @@ server.route({
     handler: (request, response) => response(`Welcome ${request.params.name} to Pet Shelter API`)
 });
 
+// Read Pets
+server.route({
+    path: '/pets/',
+    method: 'GET',
+    handler: (request, response) => {
+        const read = Knex('pets').where({status: true})
+            .select('id','name','type','breed','location','latitude','longitude')
+            .then(results => {
+                if(!results || results.length === 0) {
+                    response({
+                        error: true,
+                        errMessage: 'No pets found!'
+                    });
+                }
+                response({
+                    count: results.length,
+                    pets: results
+                });
+
+            })
+            .catch(error => {
+                response('Server-Side Error >> '+error);
+            });
+
+    }
+});
+
 
 
 

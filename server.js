@@ -1,19 +1,7 @@
 'use strict';
 
-// ------------------
 // api general config
-var config = {
-    env: "production",
-    user: "root",
-    password: "mysql",
-    database: "pets",
-    host: "localhost",
-    port: 8080,
-    client: "mysql",
-    charset: "utf8",
-    migrations: "knex_migrations",
-    seeds: "./seeds"
-};
+import config from './config';
 
 // api author info
 const author = {

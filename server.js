@@ -41,11 +41,23 @@ server.connection(connecParams);
 // --------------
 // Routes
 // -------------- 
+
+// home page
 server.route({  
     method: 'GET',
     path: '/',
     handler: (request, response) => response('Welcome to Pet Shelter API')
 });
+
+// welcome custom
+server.route({  
+    method: 'GET',
+    path: '/welcome/{name}/',
+    handler: (request, response) => response(`Welcome ${request.params.name} to Pet Shelter API`)
+});
+
+
+
 
 
 // ------------------

@@ -1,7 +1,7 @@
 // api general config
 var config = require('./config');
 
-export default require('knex')( {
+const Knex = require('knex')( {
     client: config.client,
     connection: {
         host: config.host,
@@ -12,3 +12,5 @@ export default require('knex')( {
     }
 
 } );
+
+module.exports = Knex;

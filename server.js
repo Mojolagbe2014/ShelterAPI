@@ -76,7 +76,38 @@ server.route({
     }
 });
 
+// Read a Pet
+server.route({
+    path: '/pets/{id}/',
+    method: 'GET',
+    handler: (request, response) => {
+        const read = Knex('pets').where({id: request.params.id})
+            .select('id','name','type','breed','location','latitude','longitude')
+            .then(pet => {
+                if(!pet || pet.length === 0) {
+                    response({
+                        error: true,
+                        errMessage: `Pet with ID = ${request.params.id} not found!`
+                    });
+                }
+                response({
+                    pet
+                    //pet: results
+                });
 
+            })
+            .catch(error => {
+                response('Server-Side Error >> '+error);
+            });
+    },
+    config: {
+        validate: {
+            params: {
+                id: Joi.number().integer().min(1)
+            }
+        }
+    }
+});
 
 
 

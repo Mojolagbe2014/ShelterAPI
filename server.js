@@ -13,16 +13,8 @@ const author = {
 };
 
 // knex database config
-const Knex = {
-    client: config.client,
-    connection: {
-        host: config.host,
-        user: config.user,
-        password: config.password,
-        database: config.database,
-        charset: config.charset
-    }
-};
+//var Knex = require('./knex');
+import Knex from './knex';  
 
 // other requires
 const Hapi = require('hapi');   

@@ -152,6 +152,87 @@ server.route({
 });
 
 
+// Update a pet
+server.route({
+    method: 'PUT',
+    path:   '/pets/{id}/',
+    handler: (request, response) => {
+        const pet = request.payload;  // formdata or json
+        const updates = Knex('pets')
+        .where({id: request.params.id}) 
+        .update({
+            name: pet.name,
+            type: pet.type,
+            breed: pet.breed,
+            location: pet.location,
+            latitude: pet.latitude,
+            longitude: pet.longitude
+            //picture_url: pet.picture_url
+        })
+        .then(result => {
+            response({
+                status: 1,
+                message: `Pet (${pet.name}) successfully updated.`
+            });
+        })
+        .catch(error => {
+            response({
+                status:0,
+                message: `Server-Side Error >> ${error}`
+            });
+        });
+
+    },
+    config: {
+        validate: {
+            payload: {
+                name: Joi.string().alphanum().min(3).max(100).required(),
+                type: Joi.string().min(3).max(100).required(),
+                breed: Joi.string().min(3).max(100).required(),
+                location: Joi.string().min(3).max(100).required(),
+                latitude: Joi.number().min(-90).max(90).required(),
+                longitude: Joi.number().min(-180).max(180).required()
+                //picture_url: Joi.string().uri().trim().required()
+            },
+            params: {
+                id: Joi.number().integer().min(1)
+            }
+        }
+    }
+});
+
+
+// Delete a Pet
+server.route({
+    path: '/pets/{id}/',
+    method: 'DELETE',
+    handler: (request, response) => {
+        const del = Knex('pets')
+            .where({id: request.params.id})
+            .del()
+            .then(result => {
+                response({
+                    status: 1,
+                    message: `Pet with ID = ${request.params.id} successfully deleted`
+                });
+
+            })
+            .catch(error => {
+                response({
+                    status: 0,
+                    message: 'Server-Side Error >> '+error
+                });
+            });
+    },
+    config: {
+        validate: {
+            params: {
+                id: Joi.number().integer().min(1)
+            }
+        }
+    }
+});
+
 
 // ------------------
 // Start The Server

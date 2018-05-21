@@ -13,8 +13,7 @@ const author = {
 };
 
 // knex database config
-//var Knex = require('./knex');
-import Knex from './knex';  
+var Knex = require('./knex');
 
 // other requires
 const Hapi = require('hapi');   

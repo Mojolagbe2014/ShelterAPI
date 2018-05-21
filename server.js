@@ -57,11 +57,13 @@ server.route({
             .then(results => {
                 if(!results || results.length === 0) {
                     response({
+                        status: 1,
                         error: true,
                         errMessage: 'No pets found!'
                     });
                 }
                 response({
+                    status: 0,
                     count: results.length,
                     pets: results
                 });
